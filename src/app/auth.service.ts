@@ -50,6 +50,7 @@ export class AuthService {
 
       if (loginResponse.account) {
         this.app.setActiveAccount(loginResponse.account);
+        console.log('Logged in successfully.');
       }
     } catch (error: unknown) {
       if (error instanceof AuthError) {
@@ -68,7 +69,9 @@ export class AuthService {
       return;
     }
     this.app.setActiveAccount(null);
-    console.log('User session cleared locally.');
-    window.location.href = 'http://localhost:4200';
+    console.log('Logged out successfully.');
+    setTimeout(() => {
+      window.location.href = 'http://localhost:4200';
+    }, 300000);
   }
 }
